@@ -13,6 +13,7 @@ module Memefab
 
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
+      g.test_framework :minitest, spec: false, fixture: false
     end
 
     # Settings in config/environments/* take precedence over those specified here.

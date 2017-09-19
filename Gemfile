@@ -13,7 +13,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
-gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 
 # Use Redis adapter to run Action Cable in production

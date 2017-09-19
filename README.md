@@ -1,24 +1,9 @@
-# README
+# MemeFab
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-Things you may want to cover:
 
-* Ruby version
+### Fabricate Fabulous Memes with MemeFab!
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+MemeFab gives you the power to caption and share images to enhance the glory
+of the internet.

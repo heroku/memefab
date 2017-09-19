@@ -7,7 +7,7 @@
     "cloudinary"
   ],
   "buildpacks": [
-    "heroku/ruby"
+    { "url": "heroku/ruby" }
   ],
   "env": {
     "SECRET_KEY_BASE": {

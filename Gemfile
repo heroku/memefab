@@ -22,6 +22,7 @@ gem 'turbolinks', '~> 5'
 # gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'minitest-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'

@@ -1,0 +1,17 @@
+{
+  "name": "memefab",
+  "description": "Fabricate Fabulous Memes",
+  "addons": [
+    "heroku-postgresql",
+    "heroku-redis",
+    "cloudinary"
+  ],
+  "buildpacks": [
+    "heroku/ruby"
+  ],
+  "env": {
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    }
+  }
+}

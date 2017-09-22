@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 3.0'
 gem 'redis', '~> 3.0'
+gem 'cloudinary'
 
 group :development, :test do
   gem 'dotenv-rails'

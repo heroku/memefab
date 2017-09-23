@@ -10,7 +10,7 @@ class ImagesCreatorTest < ActiveSupport::TestCase
       p == path && opts[:public_id].start_with?(name)
     end
     ImageCreator.run(name: name, path: path, client: client)
-    client.verify
+    assert client.verify
   end
 
   def test_record_created
@@ -21,5 +21,33 @@ class ImagesCreatorTest < ActiveSupport::TestCase
     assert_difference 'Image.count' do
       ImageCreator.run(name: name, path: path, client: client)
     end
+  end
+
+  def test_record_not_created_on_upload_error
+    name = "my-image"
+    path = "https://some-place-on.internet/cat.mov"
+    client = Minitest::Mock.new
+    def client.upload(p, opts={})
+      raise "Invalid file type"
+    end
+    assert_no_difference 'Image.count' do
+      assert_raises do
+        ImageCreator.run(name: name, path: path, client: client)
+      end
+    end
+  end
+
+  def test_remote_image_removed_on_record_creation_error
+    name = SecureRandom.hex(100)
+    path = "https://some-place-on.internet/cat.png"
+    client = Minitest::Mock.new
+    def client.upload(p, opts={}); {}; end;
+    client.expect :destroy, nil, [String]
+    assert_no_difference 'Image.count' do
+      assert_raises do
+        ImageCreator.run(name: name, path: path, client: client)
+      end
+    end
+    client.verify
   end
 end

@@ -8,7 +8,12 @@ class ImageCreator < Mediator
 
   def call
     upload_to_cloud
-    create_record
+    begin
+      create_record
+    rescue
+      remove_from_cloud
+      raise
+    end
   end
 
   private
@@ -20,10 +25,17 @@ class ImageCreator < Mediator
   end
 
   def upload_to_cloud
-    @upload ||= client.upload(path, public_id: remote_id)
+    client.upload(path,
+      allowed_formats: "png,jpg,gif",
+      public_id: remote_id
+    )
   end
 
   def create_record
-    @record ||= model.create(name: name, remote_id: remote_id)
+    model.create!(name: name, remote_id: remote_id)
+  end
+
+  def remove_from_cloud
+    client.destroy(remote_id)
   end
 end

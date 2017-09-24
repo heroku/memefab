@@ -1,3 +1,20 @@
 $primary: "#9E7CC";
 $secondary: "#8ECDEA";
 @import "bootstrap";
+
+body {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+header {
+  padding-bottom: 1rem;
+  border-bottom: .05rem solid #e5e5e5;
+  margin-bottom: 1rem;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 3rem;
+  }
+}

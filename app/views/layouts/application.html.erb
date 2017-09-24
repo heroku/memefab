@@ -9,12 +9,22 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
+    <div class='container'>
+      <header class='clearfix'>
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <%= link_to "Images", images_path, class: "nav-link #{'active' if current_page?(images_path)}" %>
+            </li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Memefab</h3>
+      </header>
+
+      <main role="main">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

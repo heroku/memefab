@@ -1,31 +1,31 @@
 class ImageCreator < Mediator
-  def initialize(path:, name:, client: Cloudinary::Uploader, model: Image)
-    @path   = path
-    @name   = name
-    @client = client
-    @model  = model
+  def initialize(path:, name:, uploader: Cloudinary::Uploader, model: Image)
+    @path     = path
+    @name     = name
+    @uploader = uploader
+    @model    = model
   end
 
   def call
-    upload_to_cloud
+    upload
     begin
       create_record
     rescue
-      remove_from_cloud
+      unupload
       raise
     end
   end
 
   private
 
-  attr_reader :path, :name, :client, :model
+  attr_reader :path, :name, :model, :uploader
 
   def upload_id
-    @upload_id ||= "#{name.parameterize}-#{SecureRandom.hex}"
+    @upload_id ||= "#{name.parameterize}-#{SecureRandom.hex(6)}"
   end
 
-  def upload_to_cloud
-    client.upload(path,
+  def upload
+    uploader.upload(path,
       allowed_formats: "png,jpg,gif",
       public_id: upload_id
     )
@@ -35,7 +35,7 @@ class ImageCreator < Mediator
     model.create!(name: name, upload_id: upload_id)
   end
 
-  def remove_from_cloud
-    client.destroy(upload_id)
+  def unupload
+    uploader.destroy(upload_id)
   end
 end

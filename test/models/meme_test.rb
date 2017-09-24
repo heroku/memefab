@@ -7,7 +7,7 @@ class MemeTest < ActiveSupport::TestCase
 
   def test_validates_text_lengths
     text = 25.times.map { "coffee" }.join('')
-    meme.remote_id = SecureRandom.uuid
+    meme.upload_id = SecureRandom.uuid
     meme.top = text
     meme.bottom = text
     refute meme.valid?
@@ -17,7 +17,7 @@ class MemeTest < ActiveSupport::TestCase
 
   def test_validates_required_attributes
     refute meme.valid?
-    assert_includes meme.errors[:remote_id], "can't be blank"
+    assert_includes meme.errors[:upload_id], "can't be blank"
     assert_includes meme.errors[:image], "can't be blank"
   end
 end

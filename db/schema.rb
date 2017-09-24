@@ -17,18 +17,18 @@ ActiveRecord::Schema.define(version: 20170924213601) do
   enable_extension "pgcrypto"
 
   create_table "images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", null: false
-    t.string "remote_id", null: false
+    t.string "name", limit: 50, null: false
+    t.string "upload_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_images_on_name", unique: true
-    t.index ["remote_id"], name: "index_images_on_remote_id", unique: true
+    t.index ["upload_id"], name: "index_images_on_upload_id", unique: true
   end
 
   create_table "memes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "top", limit: 50
     t.string "bottom", limit: 50
-    t.string "remote_id", null: false
+    t.string "upload_id", null: false
     t.string "image_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

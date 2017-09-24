@@ -2,7 +2,7 @@
   <div class="row">
     <% group.each do |image| %>
       <div class="col">
-        <%= cl_image_tag(image.remote_id, alt: image.name, width: 350, height: 350, crop: :thumb, class: "img-fluid rounded") %>
+        <%= cl_image_tag(image.upload_id, alt: image.name, width: 350, height: 350, crop: :thumb, class: "img-fluid rounded") %>
         <a class="btn btn-block btn-outline-primary" href="/somewhere">
           Fabricate Meme
         </a>

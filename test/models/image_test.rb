@@ -4,6 +4,6 @@ class ImageTest < ActiveSupport::TestCase
   test "should require attributes" do
     image = Image.new
     refute image.valid?
-    assert_equal [:name, :remote_id], image.errors.keys
+    assert_equal [:name, :upload_id], image.errors.keys
   end
 end

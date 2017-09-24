@@ -20,22 +20,22 @@ class ImageCreator < Mediator
 
   attr_reader :path, :name, :client, :model
 
-  def remote_id
-    @remote_id ||= "#{name.parameterize}-#{SecureRandom.hex}"
+  def upload_id
+    @upload_id ||= "#{name.parameterize}-#{SecureRandom.hex}"
   end
 
   def upload_to_cloud
     client.upload(path,
       allowed_formats: "png,jpg,gif",
-      public_id: remote_id
+      public_id: upload_id
     )
   end
 
   def create_record
-    model.create!(name: name, remote_id: remote_id)
+    model.create!(name: name, upload_id: upload_id)
   end
 
   def remove_from_cloud
-    client.destroy(remote_id)
+    client.destroy(upload_id)
   end
 end

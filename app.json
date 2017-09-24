@@ -17,5 +17,15 @@
     "SECRET_KEY_BASE": {
       "generator": "secret"
     }
+  },
+  "environments": {
+    "test": {
+      "buildpacks": [
+        { "url": "heroku/ruby" }
+      ],
+      "scripts": {
+        "test": "bin/rails test"
+      }
+    }
   }
 }

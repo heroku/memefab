@@ -24,6 +24,10 @@ default_images = [
     url: "https://memegenerator.net/img/images/600x600/265862/worlds-most-interesting-man.jpg"
   },
   {
+    name: "Oprah: You Get A Car",
+    url: "https://memegenerator.net/img/images/600x600/8825147/giving-oprah.jpg"
+  },
+  {
     name: "Overly Attached Girlfriend",
     url: "https://memegenerator.net/img/images/600x600/4915715/overly-attached-girlfriend.jpg"
   },

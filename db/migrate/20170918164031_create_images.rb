@@ -1,7 +1,7 @@
 class CreateImages < ActiveRecord::Migration[5.1]
   def change
     create_table :images, id: :uuid do |t|
-      t.string :name, null: false
+      t.string :name, null: false, limit: 50
       t.index :name, unique: true
 
       t.string :remote_id, null: false

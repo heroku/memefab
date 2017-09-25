@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class ImagesCreatorTest < ActiveSupport::TestCase
+class MemeCreatorTest < ActiveSupport::TestCase
   def image
-    @image ||= Image.create(name: "business cat", upload_id: SecureRandom.uuid)
+    @image ||= Image.create(name: "biznesscat", upload_id: SecureRandom.uuid)
   end
 
   def test_meme_uploaded
@@ -12,12 +12,12 @@ class ImagesCreatorTest < ActiveSupport::TestCase
     def model.create!(props = {}); nil; end;
     uploader = Minitest::Mock.new
     uploader.expect :upload, {} do |url, public_id:|
-      url.include(image.upload_id) &&
-      url.include?(top) &&
-      url.include?(bottom) &&
-      public_id.include?(top) &&
-      public_id.include?(bottom) &&
-      public_id.include(image.name)
+      url.include?(image.upload_id) &&
+        url.include?(top.upcase) &&
+        url.include?(bottom.upcase) &&
+        public_id.include?(top) &&
+        public_id.include?(bottom) &&
+        public_id.include?(image.name)
     end
     MemeCreator.run(
       top:      top,
@@ -33,7 +33,7 @@ class ImagesCreatorTest < ActiveSupport::TestCase
     top = "coffee"
     bottom = "sprinkles"
     uploader = Minitest::Mock
-    def uploader.upload; {}; end;
+    def uploader.upload(p, opts={}); {}; end;
     assert_difference 'Meme.count' do
       meme = MemeCreator.run(
         top:      top,
@@ -55,7 +55,7 @@ class ImagesCreatorTest < ActiveSupport::TestCase
     def uploader.upload(p, opts={})
       raise "Invalid file type"
     end
-    assert_no_difference 'Image.count' do
+    assert_no_difference 'Meme.count' do
       assert_raises do
         MemeCreator.run(
           top:      top,
@@ -68,14 +68,19 @@ class ImagesCreatorTest < ActiveSupport::TestCase
   end
 
   def test_remote_image_removed_on_record_creation_error
-    name = SecureRandom.hex(100)
-    path = "https://some-place-on.internet/cat.png"
+    top = 10.times.map { "yellow" }.join('-')
+    bottom = "submarine"
     uploader = Minitest::Mock.new
     def uploader.upload(p, opts={}); {}; end;
     uploader.expect :destroy, nil, [String]
-    assert_no_difference 'Image.count' do
+    assert_no_difference 'Meme.count' do
       assert_raises do
-        ImageCreator.run(name: name, path: path, uploader: uploader)
+        MemeCreator.run(
+          top:      top,
+          bottom:   bottom,
+          image:    image,
+          uploader: uploader
+        )
       end
     end
     uploader.verify

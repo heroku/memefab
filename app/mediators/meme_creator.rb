@@ -1,4 +1,4 @@
-class ImageCreator < Mediator
+class MemeCreator < Mediator
   include ImagesHelper
 
   def initialize(top:, bottom:, image:, model: Meme, uploader: Cloudinary::Uploader)
@@ -21,7 +21,7 @@ class ImageCreator < Mediator
 
   private
 
-  attr_reader :path, :name, :model, :uploader
+  attr_reader :top, :bottom, :image, :model, :uploader
 
   def upload_id
     @upload_id ||= begin

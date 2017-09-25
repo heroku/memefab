@@ -26,7 +26,7 @@ class ImageCreator < Mediator
   def upload_id
     @upload_id ||= begin
       parts = [top, bottom, image.name, SecureRandom.hex(6)]
-      parts.compact.join('-')
+      parts.compact.map(&:parameterize).join('_')
     end
   end
 
@@ -40,9 +40,9 @@ class ImageCreator < Mediator
 
   def create_record
     model.create!(
-      top:       top,
-      bottom:    bottom,
-      image:     image,
+      top: top,
+      bottom: bottom,
+      image: image,
       upload_id: upload_id
     )
   end

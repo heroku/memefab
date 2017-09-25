@@ -3,7 +3,7 @@
     <% group.each do |image| %>
       <div class="col">
         <%= cl_image_tag(image.upload_id, alt: image.name, width: 350, height: 350, crop: :thumb, class: "img-fluid rounded") %>
-        <a class="btn btn-block btn-outline-primary" href="/somewhere">
+        <a class="btn btn-block btn-outline-primary" href="<%= new_meme_path(image_id: image.id) %>">
           Fabricate Meme
         </a>
       </div>

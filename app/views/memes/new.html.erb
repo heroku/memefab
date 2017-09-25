@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col">
+    <%= cl_image_tag(@meme.image.upload_id, alt: @meme.image.name, class: "img-fluid rounded") %>
+  </div>
+  <div class="col">
+    <%= form_for @meme do |f| %>
+      <%= f.hidden_field :image_id %>
+      <div class="form-group">
+        <label for="top">Top Caption</label>
+        <%= f.text_field :top, class: "form-control",  placeholder: "a catchy hook" %>
+      </div>
+      <div class="form-group">
+        <label for="bottom">Bottom Caption</label>
+        <%= f.text_field :bottom, class: "form-control",  placeholder: "fabulous finish" %>
+      </div>
+      <button class="btn btn-outline-primary" type="submit">Fabricate</button>
+    <% end %>
+  </div>
+</div>
+

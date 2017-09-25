@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby File.read(File.join(__dir__, ".ruby-version"))
+
 gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'

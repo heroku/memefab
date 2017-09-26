@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-4">
+    <%= cl_image_tag(@meme.upload_id, alt: @meme.text, class: "rounded img-fluid") %>
+  </div>
+  <div class="col-md-8">
+    <dl class="row">
+      <dt class="col-12">
+        Shareable URL:
+      </dt>
+      <div class="col-sm-1"></div>
+      <dd class="col-sm-11 text-truncate">
+        <%= link_to request.base_url+request.fullpath, request.fullpath %>
+      </dd>
+      <dt class="col-12">
+        Download URL:
+      </dt>
+      <div class="col-sm-1"></div>
+      <dd class="col-sm-11 text-truncate">
+        <%= link_to cloudinary_url(@meme.upload_id) %>
+      </dd>
+    </dl>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MemeCreatorTest < ActiveSupport::TestCase
+class MemeFabricatorTest < ActiveSupport::TestCase
   def image
     @image ||= Image.create(name: "biznesscat", upload_id: SecureRandom.uuid)
   end
@@ -19,7 +19,7 @@ class MemeCreatorTest < ActiveSupport::TestCase
         public_id.include?(bottom) &&
         public_id.include?(image.name)
     end
-    MemeCreator.run(
+    MemeFabricator.run(
       top:      top,
       bottom:   bottom,
       image:    image,
@@ -35,7 +35,7 @@ class MemeCreatorTest < ActiveSupport::TestCase
     uploader = Minitest::Mock
     def uploader.upload(p, opts={}); {}; end;
     assert_difference 'Meme.count' do
-      meme = MemeCreator.run(
+      meme = MemeFabricator.run(
         top:      top,
         bottom:   bottom,
         image:    image,
@@ -57,7 +57,7 @@ class MemeCreatorTest < ActiveSupport::TestCase
     end
     assert_no_difference 'Meme.count' do
       assert_raises do
-        MemeCreator.run(
+        MemeFabricator.run(
           top:      top,
           bottom:   bottom,
           image:    image,
@@ -75,7 +75,7 @@ class MemeCreatorTest < ActiveSupport::TestCase
     uploader.expect :destroy, nil, [String]
     assert_no_difference 'Meme.count' do
       assert_raises do
-        MemeCreator.run(
+        MemeFabricator.run(
           top:      top,
           bottom:   bottom,
           image:    image,

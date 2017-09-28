@@ -1,4 +1,4 @@
-class MemeCreator < Mediator
+class MemeFabricator < Mediator
   include ImagesHelper
 
   def initialize(top:, bottom:, image:, model: Meme, uploader: Cloudinary::Uploader)

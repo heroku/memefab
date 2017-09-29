@@ -8,10 +8,7 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap', '~> 4.0.0.beta'
-gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 3.0'
-gem 'redis', '~> 3.0'
 gem 'cloudinary'
 
 group :development, :test do

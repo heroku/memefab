@@ -8,10 +8,9 @@ class MemesController < ApplicationController
     fabricator = MemeFabricator.new(meme_params, {})
     @meme = fabricator.meme
     fabricator.call
+    flash[:notice] = "Meme successfully created"
     redirect_to @meme
   rescue => e
-    puts e.class
-    puts e.message
     render :new
   end
 

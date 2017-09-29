@@ -7,7 +7,6 @@
     "cloudinary"
   ],
   "buildpacks": [
-    { "url": "heroku/nodejs" },
     { "url": "heroku/ruby" }
   ],
   "scripts": {
@@ -20,9 +19,6 @@
   },
   "environments": {
     "test": {
-      "buildpacks": [
-        { "url": "heroku/ruby" }
-      ],
       "scripts": {
         "test": "bin/rails test"
       }

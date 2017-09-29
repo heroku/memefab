@@ -5,9 +5,14 @@ class MemesController < ApplicationController
   end
 
   def create
-    image = Image.find_by_id(meme_params.delete(:image_id))
-    @meme = MemeCreator.run(meme_params.merge(image: image))
+    fabricator = MemeFabricator.new(meme_params, {})
+    @meme = fabricator.meme
+    fabricator.call
     redirect_to @meme
+  rescue => e
+    puts e.class
+    puts e.message
+    render :new
   end
 
   def show

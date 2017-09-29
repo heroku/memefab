@@ -8,24 +8,16 @@ class MemeFabricatorTest < ActiveSupport::TestCase
   def test_meme_uploaded
     top = "chocolate"
     bottom = "bananas"
-    model = Minitest::Mock.new
-    def model.create!(props = {}); nil; end;
     uploader = Minitest::Mock.new
     uploader.expect :upload, {} do |url, public_id:|
       url.include?(image.upload_id) &&
         url.include?(top.upcase) &&
         url.include?(bottom.upcase) &&
         public_id.include?(top) &&
-        public_id.include?(bottom) &&
-        public_id.include?(image.name)
+        public_id.include?(bottom)
     end
-    MemeFabricator.run(
-      top:      top,
-      bottom:   bottom,
-      image:    image,
-      model:    model,
-      uploader: uploader
-    )
+    MemeFabricator.run({ top: top, bottom: bottom, image_id: image.id },
+                       { uploader: uploader})
     assert uploader.verify
   end
 
@@ -35,12 +27,8 @@ class MemeFabricatorTest < ActiveSupport::TestCase
     uploader = Minitest::Mock
     def uploader.upload(p, opts={}); {}; end;
     assert_difference 'Meme.count' do
-      meme = MemeFabricator.run(
-        top:      top,
-        bottom:   bottom,
-        image:    image,
-        uploader: uploader
-      )
+      meme = MemeFabricator.run({ top: top, bottom: bottom, image_id: image.id },
+                                { uploader: uploader })
       assert_equal meme.top, top
       assert_equal meme.bottom, bottom
       assert_equal meme.image_id, image.id
@@ -57,32 +45,24 @@ class MemeFabricatorTest < ActiveSupport::TestCase
     end
     assert_no_difference 'Meme.count' do
       assert_raises do
-        MemeFabricator.run(
-          top:      top,
-          bottom:   bottom,
-          image:    image,
-          uploader: uploader
-        )
+        MemeFabricator.run({ top: top, bottom: bottom, image_id: image.id },
+                           { uploader: uploader})
       end
     end
   end
 
-  def test_remote_image_removed_on_record_creation_error
+  def test_remote_image_not_uploaded_on_validation_error
     top = 10.times.map { "yellow" }.join('-')
     bottom = "submarine"
     uploader = Minitest::Mock.new
-    def uploader.upload(p, opts={}); {}; end;
-    uploader.expect :destroy, nil, [String]
+    def uploader.upload(p, opts={})
+      raise "Uploader shoud not upload"
+    end
     assert_no_difference 'Meme.count' do
-      assert_raises do
-        MemeFabricator.run(
-          top:      top,
-          bottom:   bottom,
-          image:    image,
-          uploader: uploader
-        )
+      assert_raises ActiveRecord::RecordInvalid do
+        MemeFabricator.run({ top: top, bottom: bottom, image_id: image.id },
+                           { uploader: uploader})
       end
     end
-    uploader.verify
   end
 end

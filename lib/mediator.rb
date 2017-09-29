@@ -1,5 +1,5 @@
 class Mediator
-  def self.run(options = {})
-    new(options).call
+  def self.run(*args)
+    new(*args).call
   end
 end

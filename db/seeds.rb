@@ -32,6 +32,10 @@ default_images = [
     url: "https://memegenerator.net/img/images/600x600/4915715/overly-attached-girlfriend.jpg"
   },
   {
+    name: "El Paso Girl: Why don't we have both",
+    url: "https://memegenerator.net/img/images/600x600/6483255/why-not-both.jpg"
+  },
+  {
     name: "Willy Wonka: Sarcastic",
     url: "https://memegenerator.net/img/images/600x600/2729805/willy-wonka.jpg"
   },

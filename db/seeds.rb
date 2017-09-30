@@ -33,7 +33,7 @@ default_images = [
   },
   {
     name: "El Paso Girl: Why don't we have both",
-    url: "https://memegenerator.net/img/images/600x600/6483255/why-not-both.jpg"
+    url: "https://memegenerator.net/img/images/600x/13141187.jpg"
   },
   {
     name: "Willy Wonka: Sarcastic",

@@ -1,7 +1,7 @@
 class MemeFabricator < Mediator
   include ImagesHelper
 
-  def initialize(attributes = {}, model: Meme, uploader: Cloudinary::Uploader)
+  def initialize(model: Meme, uploader: Cloudinary::Uploader, **attributes)
     @attributes = attributes
     @model      = model
     @uploader   = uploader

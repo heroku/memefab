@@ -16,8 +16,8 @@ class MemeFabricatorTest < ActiveSupport::TestCase
         public_id.include?(top) &&
         public_id.include?(bottom)
     end
-    MemeFabricator.run({ top: top, bottom: bottom, image_id: image.id },
-                       { uploader: uploader})
+    MemeFabricator.run(top: top, bottom: bottom, image_id: image.id,
+                       uploader: uploader)
     assert uploader.verify
   end
 
@@ -27,8 +27,8 @@ class MemeFabricatorTest < ActiveSupport::TestCase
     uploader = Minitest::Mock
     def uploader.upload(p, opts={}); {}; end;
     assert_difference 'Meme.count' do
-      meme = MemeFabricator.run({ top: top, bottom: bottom, image_id: image.id },
-                                { uploader: uploader })
+      meme = MemeFabricator.run(top: top, bottom: bottom, image_id: image.id,
+                                uploader: uploader)
       assert_equal meme.top, top
       assert_equal meme.bottom, bottom
       assert_equal meme.image_id, image.id
@@ -45,8 +45,8 @@ class MemeFabricatorTest < ActiveSupport::TestCase
     end
     assert_no_difference 'Meme.count' do
       assert_raises do
-        MemeFabricator.run({ top: top, bottom: bottom, image_id: image.id },
-                           { uploader: uploader})
+        MemeFabricator.run(top: top, bottom: bottom, image_id: image.id,
+                           uploader: uploader)
       end
     end
   end
@@ -60,8 +60,8 @@ class MemeFabricatorTest < ActiveSupport::TestCase
     end
     assert_no_difference 'Meme.count' do
       assert_raises ActiveRecord::RecordInvalid do
-        MemeFabricator.run({ top: top, bottom: bottom, image_id: image.id },
-                           { uploader: uploader})
+        MemeFabricator.run(top: top, bottom: bottom, image_id: image.id,
+                           uploader: uploader)
       end
     end
   end

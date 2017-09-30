@@ -5,7 +5,7 @@ class MemesController < ApplicationController
   end
 
   def create
-    fabricator = MemeFabricator.new(meme_params, {})
+    fabricator = MemeFabricator.new(meme_params)
     @meme = fabricator.meme
     fabricator.call
     flash[:notice] = "Meme successfully created"

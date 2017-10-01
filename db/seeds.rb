@@ -4,6 +4,10 @@ default_images = [
     url: "https://memegenerator.net/img/images/600x600/9388/admiral-ackbar.jpg"
   },
   {
+    name: "All the things",
+    url: "https://memegenerator.net/img/images/600x/1121885.jpg",
+  },
+  {
     name: "Boromir: One Does Not Simply",
     url: "https://memegenerator.net/img/images/600x600/3291562/one-does-not-simply.jpg"
   },

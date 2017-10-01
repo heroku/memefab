@@ -1,5 +1,8 @@
 default_images = [
   {
+    name: "Admiral Ackbar: It's a Trap",
+    url: "https://memegenerator.net/img/images/600x600/9388/admiral-ackbar.jpg"
+  {
     name: "Boromir: One Does Not Simply",
     url: "https://memegenerator.net/img/images/600x600/3291562/one-does-not-simply.jpg"
   },

@@ -43,6 +43,10 @@ default_images = [
     name: "Willy Wonka: Sarcastic",
     url: "https://memegenerator.net/img/images/600x600/2729805/willy-wonka.jpg"
   },
+  {
+    name: "Yoda: Advice",
+    url: "https://memegenerator.net/img/images/600x/963.jpg"
+  }
 ]
 
 default_images.each do |opts|

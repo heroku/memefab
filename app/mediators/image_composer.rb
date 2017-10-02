@@ -21,12 +21,13 @@ class ImageComposer < Mediator
   attr_reader :path, :name, :model, :uploader
 
   def upload_id
-    @upload_id ||= "#{name.parameterize}-#{SecureRandom.hex(6)}"
+    prefix = name.gsub("'","").parameterize
+    @upload_id ||= "#{prefix}_#{SecureRandom.hex(6)}"
   end
 
   def upload
     uploader.upload(path,
-      allowed_formats: "png,jpg,gif",
+      allowed_formats: "jpg",
       public_id: upload_id
     )
   end

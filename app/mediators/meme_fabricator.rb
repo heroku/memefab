@@ -27,7 +27,6 @@ class MemeFabricator < Mediator
     raise ActiveRecord::RecordInvalid if meme.invalid?
   end
 
-
   def memeify_image
     @memeified ||= memeify(image.upload_id, meme.top, meme.bottom)
   rescue
@@ -44,7 +43,7 @@ class MemeFabricator < Mediator
 
   def save_record
     meme.save!
-  rescue => e
+  rescue
     uploader.destroy(upload_id)
     raise
   end

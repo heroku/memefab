@@ -1,4 +1,4 @@
-class ImageCreator < Mediator
+class ImageComposer < Mediator
   def initialize(path:, name:, uploader: Cloudinary::Uploader, model: Image)
     @path     = path
     @name     = name

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ImagesCreatorTest < ActiveSupport::TestCase
+class ImagesComposerTest < ActiveSupport::TestCase
 
   def test_image_uploaded
     name = "my-image"
@@ -9,7 +9,7 @@ class ImagesCreatorTest < ActiveSupport::TestCase
     uploader.expect :upload, {} do |p, opts|
       p == path && opts[:public_id].start_with?(name)
     end
-    ImageCreator.run(name: name, path: path, uploader: uploader)
+    ImageComposer.run(name: name, path: path, uploader: uploader)
     assert uploader.verify
   end
 
@@ -19,7 +19,7 @@ class ImagesCreatorTest < ActiveSupport::TestCase
     uploader = Minitest::Mock.new
     def uploader.upload(p, opts={}); {}; end;
     assert_difference 'Image.count' do
-      ImageCreator.run(name: name, path: path, uploader: uploader)
+      ImageComposer.run(name: name, path: path, uploader: uploader)
     end
   end
 
@@ -32,7 +32,7 @@ class ImagesCreatorTest < ActiveSupport::TestCase
     end
     assert_no_difference 'Image.count' do
       assert_raises do
-        ImageCreator.run(name: name, path: path, uploader: uploader)
+        ImageComposer.run(name: name, path: path, uploader: uploader)
       end
     end
   end
@@ -45,7 +45,7 @@ class ImagesCreatorTest < ActiveSupport::TestCase
     uploader.expect :destroy, nil, [String]
     assert_no_difference 'Image.count' do
       assert_raises do
-        ImageCreator.run(name: name, path: path, uploader: uploader)
+        ImageComposer.run(name: name, path: path, uploader: uploader)
       end
     end
     uploader.verify

@@ -55,6 +55,6 @@ default_images = [
 
 default_images.each do |opts|
   unless Image.exists?(name: opts[:name])
-    ImageCreator.run(name: opts[:name], path: opts[:url])
+    ImageComposer.run(name: opts[:name], path: opts[:url])
   end
 end

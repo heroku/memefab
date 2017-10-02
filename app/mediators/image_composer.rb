@@ -7,25 +7,19 @@ class ImageComposer < Mediator
   end
 
   def call
-    upload
-    begin
-      create_record
-    rescue
-      unupload
-      raise
-    end
+    upload_image
+    create_record
+  end
+
+  def image
+    @image ||= Image.new(name: name, upload_id: upload_id)
   end
 
   private
 
   attr_reader :path, :name, :model, :uploader
 
-  def upload_id
-    prefix = name.gsub("'","").parameterize
-    @upload_id ||= "#{prefix}_#{SecureRandom.hex(6)}"
-  end
-
-  def upload
+  def upload_image
     uploader.upload(path,
       allowed_formats: "jpg",
       public_id: upload_id
@@ -34,9 +28,15 @@ class ImageComposer < Mediator
 
   def create_record
     model.create!(name: name, upload_id: upload_id)
+  rescue
+    uploader.destroy(upload_id)
+    raise
   end
 
-  def unupload
-    uploader.destroy(upload_id)
+  def upload_id
+    @upload_id ||= begin
+      prefix = name.gsub("'","").parameterize
+      "#{prefix}_#{SecureRandom.hex(6)}"
+    end
   end
 end

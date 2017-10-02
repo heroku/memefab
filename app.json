@@ -10,7 +10,7 @@
     { "url": "heroku/ruby" }
   ],
   "scripts": {
-    "postdeploy": "bin/rails db:migrate"
+    "postdeploy": "bin/rails db:seed"
   },
   "env": {
     "SECRET_KEY_BASE": {

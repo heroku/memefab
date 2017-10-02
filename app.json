@@ -3,7 +3,6 @@
   "description": "Fabricate Fabulous Memes",
   "addons": [
     "heroku-postgresql",
-    "heroku-redis",
     "cloudinary"
   ],
   "buildpacks": [

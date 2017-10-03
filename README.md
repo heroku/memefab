@@ -13,7 +13,7 @@ of the internet.
 1. Continuous delivery via Heroku Flow (pipelines, review apps, and CI)
 2. The Meidator Pattern
 
-### Prerequisites for the Heroku Flow workshop:
+#### Prerequisites for the Heroku Flow workshop:
 
 1. A Heroku account (get one [here](https://signup.heroku.com/))
 2. A GitHub account (get one [here](https://github.com/))

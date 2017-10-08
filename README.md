@@ -15,7 +15,8 @@ of the internet.
 
 #### Prerequisites for the Heroku Flow workshop:
 
-1. A Heroku account (get one [here](https://signup.heroku.com/))
-2. A GitHub account (get one [here](https://github.com/))
-3. An internet connection
-4. A web browser
+1. An internet connection
+2. A web browser
+3. A Heroku account -- Get one free, [here](https://signup.heroku.com/).
+4. (optional, reccomended) Verify your Heroku account with a credit card [here](https://dashboard.heroku.com/account/billing). We'll be using free resources, but the advanced workflows require verification.
+5. A GitHub account -- Get one free, [here](https://github.com/).

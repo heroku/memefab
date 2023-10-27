@@ -12,7 +12,7 @@ gem 'cloudinary'
 
 group :development, :test do
   gem 'dotenv-rails'
-  gem 'minitest-rails'
+  gem 'minitest-rails', '>= 7.1.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
